@@ -12,9 +12,8 @@ exports.createProduct = async (req, res) => {
       buyPrice: data.buyPrice,
       soldPrice: data.soldPrice,
       stock: data.stock,
-      picture: req.file.filename || null
+      picture: req.file.filename
     }
-
     const createProduct = await productModal.createProduct(productData)
     if (createProduct.affectedRows > 0) {
       const results = await productModal.getProductByCondition({ id: createProduct.insertId })
@@ -99,7 +98,7 @@ exports.deleteProduct = async (req, res) => {
       if (initialResults[0].picture !== null) {
         fs.unlinkSync(`upload/product/${initialResults[0].picture}`)
       }
-      return response(res, 200, true, 'Product delete success', { id, picture: null })
+      return response(res, 200, true, 'Product delete success')
     }
   } catch (err) {
     console.log(err)

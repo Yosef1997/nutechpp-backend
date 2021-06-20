@@ -4,7 +4,7 @@ const productMiddleware = require('../middleware/uploadProduct')
 const authMiddleware = require('../middleware/auth')
 const validator = require('../middleware/validator')
 
-routes.post('/product', authMiddleware.authCheck, productMiddleware, validator.valdationResult, validator.addProduct, productController.createProduct)
+routes.post('/product', authMiddleware.authCheck, productMiddleware, validator.valdationResult, productController.createProduct)
 routes.get('/product', productController.getProduct)
 routes.get('/product/:id', productController.getDetailProduct)
 routes.patch('/product/:id', authMiddleware.authCheck, productMiddleware, productController.editProduct)
